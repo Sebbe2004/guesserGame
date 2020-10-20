@@ -3,11 +3,12 @@
 NAME="Sebastian_Petersson"
 FILENAME="$NAME""_labb"
 
-echo "$NAME""s program"
+echo -n "$NAME"
+echo "s program"
 
 mkdir "$FILENAME"
 
-cp *.java "$NAME""_labb/"
+cp *.java "$FILENAME"
 
 cd "$FILENAME"
 
