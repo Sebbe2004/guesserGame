@@ -1,0 +1,32 @@
+1. Man använder add för att säga till att de filer man "addar" ska vara med i nästa commit kommando man kör.
+Man lägger till dem i sin staging area
+
+Commit gör så att de ändringar man addat till sin staging area med add kommandot blir slutgiltliga och alla får tillgång till det. Man skriver även en kommentar som beskriver lätt ändringen man gjort eller vad man la till.
+
+2. Pull kommandot laddar ner nya versioner från github tex
+Push betyder att man laddar upp de commitade ändringar man gjort till sitt repository på github
+
+3. Med log ser man de ändringar man commitat med commit kommandot i den branchen man är i där senaste commit visas överst. status visar om det tex finns något som behöver commitas eller addas och vilken branch man befinner sig i.
+
+4. Man ska formulera sig enkelt och bara skriva något kort om vad det är man gjort. Tex om man la till en konstruktor kan man skriva "Added a constructor"
+
+5.  2 kommandon man använder för att rulla tillbaka koden till tidigare tillstånd är revert och reset
+
+Vad dom gör: 
+Revert- revert skapar en ny commit där man undo:ar en gammal commit men den gamla commiten finns fortfarande kvar och det skapas en ny commit där man tar bort det man gjorde i den gamla.
+Reset - Reset flyttar branch pekaren så att man befinner sig i ett tidigare skede i sin git log
+
+Exempel på hur man använder dom: 
+Reset - har man tex 3 commits så kan man skriva git reset (commit-id) så kommer man tillbaks till den commiten som man skrev in id:t för och de commitsen man gjorde efter det har blivit ogjorda.
+Om man la till några filer i de commitsen man gjorde efter så kommer man behöva adda och commita dom igen eftersom de kommit ut ur repositoryt och staging arean.
+Reset bör inte användas om ens kod är public och andra börjat arbeta med den eftersom det kan skapa problem för de som använder sig av koden
+
+Revert - Man kan använda revert för att tex ändra på något som man gjorde en tid bak i projektet utan att ta bort allt man gjorde efter, det kommer istället bara upp en ny commit där det står att man
+revertat en tidigare commit. Man skriver git revert (commit-id) för att göra detta. Om man hade en commit som tex "added filetext.txt" i sin log så kan man skriva git revert (commit id för filen) så kommer den filen man adda i den commiten att försvinna eftersom
+man tar bort den ändringen man gjorde vilket var att lägga till filen.
+Revert är bättre att använda än reset när andra börjat använda koden eftersom det inte tar bort några andra commits i projektet och man ändrar bara på en commit.    
+
+Jag skapade 3 filer i en katalog med git, jag addade varje fil var för sig med sitt eget commit och fick då 3 commit meddelanden i min git log
+När jag sedan körde git reset (id för första filen) så försvann de två sista commitsen och jag flyttades till den första. Körde jag git log igen så fanns det bara den första som jag gick till.
+Om jag istället körde git revert (id för första filen) så skapades det en ny commit där jag skrev "Revert added file1" och när jag sedan körde git log så fanns det en fjärde commit som va den reverten jag precis gjorde
+men körde jag sedan ls så fanns inte den första filen i mappen längre eftersom jag reverta den ändringen när jag lade till filen så blev filen aldrig tillagd och finns därför inte
